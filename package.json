@@ -1,0 +1,27 @@
+{
+  "name": "satolep-cli",
+  "version": "1.0.0",
+  "description": "CLI (Command Line Interface) for creation and assistance in NEXTJS, NestJS and React Native projects",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node src/index.js"
+  },
+  "author": "Bruno Ferraz Silveira",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/inquirer": "^7.3.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^1.1.4",
+    "prettier": "^2.3.2",
+    "prettier-eslint": "^13.0.0"
+  }
+}

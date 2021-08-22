@@ -1,0 +1,17 @@
+{
+  "display": "Node 14",
+
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "module": "es2020",
+    "target": "es2020",
+
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+
+  "include": ["src/**/*.js"],
+  "exclude": ["node_modules"]
+}

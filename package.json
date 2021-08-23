@@ -2,7 +2,10 @@
   "name": "satolep-cli",
   "version": "1.0.0",
   "description": "CLI (Command Line Interface) for creation and assistance in NEXTJS, NestJS and React Native projects",
-  "main": "src/index.js",
+  "main": "./src/index.js",
+  "bin": {
+    "satolep": "./bin/satolep.js"
+  },
   "scripts": {
     "lint": "eslint .",
     "start": "node src/index.js"

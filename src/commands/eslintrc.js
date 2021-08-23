@@ -1,6 +1,6 @@
 import { getInstallDevDependenciesCommand } from './utils'
 
-function installEslintDependecies({
+export function installDependecies({
   packageManager = 'npm',
   dependencies,
 }) {
@@ -9,7 +9,7 @@ function installEslintDependecies({
 }
 
 export const installEslintDependecies = (packageManager = 'npm') => {
-  return installEslintDependecies({
+  return installDependecies({
     packageManager,
     dependencies:
       'eslint eslint-plugin-simple-import-sort eslint-plugin-unused-imports eslint-plugin-import',
@@ -19,7 +19,7 @@ export const installEslintDependecies = (packageManager = 'npm') => {
 export const installNextjsEslintDependecies = (
   packageManager = 'npm',
 ) => {
-  return installEslintDependecies({
+  return installDependecies({
     packageManager,
     dependencies: 'eslint-plugin-react',
   })
@@ -28,7 +28,7 @@ export const installNextjsEslintDependecies = (
 export const installPrettierEslintDependecies = (
   packageManager = 'npm',
 ) => {
-  return installEslintDependecies({
+  return installDependecies({
     packageManager,
     dependencies:
       'prettier eslint-config-prettier eslint-plugin-prettier prettier-eslint',
@@ -38,7 +38,7 @@ export const installPrettierEslintDependecies = (
 export const installTypeScriptEslintDependecies = (
   packageManager = 'npm',
 ) => {
-  return installEslintDependecies({
+  return installDependecies({
     packageManager,
     dependencies:
       '@typescript-eslint/eslint-plugin @typescript-eslint/parser',

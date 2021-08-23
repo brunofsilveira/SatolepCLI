@@ -1,3 +1,3 @@
-import run from './app.js'
+import app from './app.js'
 
-run()
+app()

@@ -1,22 +1,26 @@
 import lodash from 'lodash'
 
-import { exec } from '../commands/shell.js'
 import { prompt } from '../commands/inquirer.js'
-
+import { exec } from '../commands/shell.js'
 import { eslintrc } from '../templates/eslintrc/eslintrc.js'
 import { jsEslintrc } from '../templates/eslintrc/js-eslintrc.js'
-import { prettierEslintrc as prettierEslintrcObject } from '../templates/eslintrc/prettier-eslintrc.js'
-import { tsEslintrc } from '../templates/eslintrc/ts-eslintrc.js'
-
 import {
   nextjsEslintrc,
   nextjsPrettierEslintrc as nextjsPrettierEslintrcObject,
 } from '../templates/eslintrc/nextjs-eslintrc.js'
+import { prettierEslintrc as prettierEslintrcObject } from '../templates/eslintrc/prettier-eslintrc.js'
+import { tsEslintrc } from '../templates/eslintrc/ts-eslintrc.js'
 
 const projectTypeEslintrcObject = { nextjsEslintrc }
 const programmingLanguageEslintrcObject = {
   jsEslintrc,
   tsEslintrc,
+}
+
+function customizer(objValue, srcValue) {
+  if (lodash.isArray(objValue)) {
+    return objValue.concat(srcValue)
+  }
 }
 
 export default async function generateEslint({
@@ -44,12 +48,13 @@ export default async function generateEslint({
     ? nextjsPrettierEslintrcObject
     : {}
 
-  const fullEslintrc = lodash.merge(
+  const fullEslintrc = lodash.mergeWith(
     eslintrc,
     prettierEslintrc,
     programmingLanguageEslintrc,
     projectTypeEslintrc,
     nextjsPrettierEslintrc,
+    customizer,
   )
 
   exec(`echo '${JSON.stringify(fullEslintrc)}' > .eslintrc`)

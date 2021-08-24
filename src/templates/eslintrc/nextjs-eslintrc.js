@@ -43,12 +43,6 @@ export const nextjsEslintrc = {
     'react/jsx-wrap-multilines': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/display-name': ['off'],
-    'simple-import-sort/imports': [
-      'error',
-      {
-        groups: [['^react$']],
-      },
-    ],
   },
   settings: {
     react: {
@@ -62,6 +56,14 @@ export const nextjsPrettierEslintrc = {
     'prettier/prettier': [
       'error',
       {
+        endOfLine: 'auto',
+        singleQuote: true,
+        trailingComma: 'all',
+        tabWidth: 2,
+        semi: false,
+        printWidth: 70,
+        bracketSpacing: true,
+        arrowParens: 'avoid',
         jsxSingleQuote: true,
         jsxBracketSameLine: false,
       },

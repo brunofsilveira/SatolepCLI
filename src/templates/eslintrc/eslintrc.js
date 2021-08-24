@@ -4,7 +4,6 @@ export const eslintrc = {
     jest: true,
     es2021: true,
   },
-  extends: ['eslint:recommended'],
   ignorePatterns: ['node_modules'],
   parserOptions: {
     sourceType: 'module',
@@ -28,7 +27,7 @@ export const eslintrc = {
       'error',
       {
         groups: [
-          [],
+          ['^react$'],
           ['^\\u0000'],
           ['^@?\\w'],
           ['^app(/.*|$)'],

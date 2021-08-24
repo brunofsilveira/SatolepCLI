@@ -1,12 +1,14 @@
 import lodash from 'lodash'
 
-import { prompt } from '../commands/inquirer.js'
+import { concatArrays } from './utils.js'
 import { exec } from '../commands/shell.js'
+import { prompt } from '../commands/inquirer.js'
+
 import { eslintrc } from '../templates/eslintrc/eslintrc.js'
 import { jsEslintrc } from '../templates/eslintrc/js-eslintrc.js'
 import {
   nextjsEslintrc,
-  nextjsPrettierEslintrc as nextjsPrettierEslintrcObject,
+  nextjsPrettierEslintrc,
 } from '../templates/eslintrc/nextjs-eslintrc.js'
 import { prettierEslintrc as prettierEslintrcObject } from '../templates/eslintrc/prettier-eslintrc.js'
 import { tsEslintrc } from '../templates/eslintrc/ts-eslintrc.js'
@@ -17,10 +19,8 @@ const programmingLanguageEslintrcObject = {
   tsEslintrc,
 }
 
-function customizer(objValue, srcValue) {
-  if (lodash.isArray(objValue)) {
-    return objValue.concat(srcValue)
-  }
+const projectTypePrettierEslintrcObject = {
+  nextjsPrettierEslintrc,
 }
 
 export default async function generateEslint({
@@ -44,8 +44,10 @@ export default async function generateEslint({
     ? prettierEslintrcObject
     : {}
 
-  const nextjsPrettierEslintrc = answers.prettier
-    ? nextjsPrettierEslintrcObject
+  const projectTypePrettierEslintrc = answers.prettier
+    ? projectTypePrettierEslintrcObject[
+        `${answers.projectType}PrettierEslintrc`
+      ]
     : {}
 
   const fullEslintrc = lodash.mergeWith(
@@ -53,8 +55,8 @@ export default async function generateEslint({
     prettierEslintrc,
     programmingLanguageEslintrc,
     projectTypeEslintrc,
-    nextjsPrettierEslintrc,
-    customizer,
+    projectTypePrettierEslintrc,
+    concatArrays,
   )
 
   exec(`echo '${JSON.stringify(fullEslintrc)}' > .eslintrc`)
